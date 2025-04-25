@@ -1,0 +1,39 @@
+import hashlib
+import base64
+import json
+import re
+from datetime import datetime
+from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
+from cryptography.hazmat.backends import default_backend
+import ipfshttpclient
+from web3 import Web3
+import os
+import asyncio
+import aioipfs
+import rlp
+from eth_account import Account
+from eth_account.messages import encode_defunct
+from eth_account.datastructures import SignedTransaction
+from hexbytes import HexBytes
+from web3.exceptions import ContractLogicError
+from eth_abi import encode
+
+class NFTMinter:
+    def __init__(self, provider_url, contract_address, private_key):
+        self.w3 = Web3(Web3.LegacyWebSocketProvider(provider_url))
+        
+        with open("./abi.json", 'r') as f:
+            self.abi = json.load(f) #the JSON object must be str, bytes or bytearray, not NoneType
+
+        self.contract = self.w3.eth.contract(
+            address=contract_address,
+            abi=self.abi
+        )
+        self.account = self.w3.eth.account.from_key(private_key)
+        self.contract_address = contract_address
+
+    async def check_connection(self):  
+        if not self.w3.is_connected():
+            await asyncio.sleep(1)  
+            if not self.w3.is_connected():
+                raise ConnectionError("can't connect to WebSocket node")

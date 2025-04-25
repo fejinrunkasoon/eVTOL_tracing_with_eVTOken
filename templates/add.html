@@ -1,0 +1,16 @@
+<head>
+    <meta charset="utf-8">
+    <title>Users list</title>
+    </head>
+    <body>   
+        <h1>ADD USER!</h1>
+        <form action="{{ url_for('add')}}" method='post'>
+            
+            name :<input type="text" name="name" id="name" required><br>    
+            age :<input type="number" name="age" required><br>           
+            <input type="submit" value="Add User"> 
+            
+        </form>
+        <a href="/">Back to user list</a>
+    </body>
+    </html>
