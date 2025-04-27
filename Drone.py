@@ -388,6 +388,8 @@ async def main():
             "longitude": "120.123456",
             "latitude": "30.123456",
             "heightAltitype": "0",
+            "height": "50",
+            "altitude": "100",
             "VS": "10",
             "GS": "50",
             "course": "45"
