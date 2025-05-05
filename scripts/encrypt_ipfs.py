@@ -207,7 +207,7 @@ async def main():
             provider_url="ws://127.0.0.1:8545", #websocket defalt port is 8545 and open the anvil node
             contract_address = Web3.to_checksum_address("0x5FbDB2315678afecb367f032d93F642f64180aa3"),
             private_key="0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80"
-            )#it can be changed freely according the real caller address and private key of forge 
+            )#it can be changed freely according the real caller address(Deployed to: can be seen in README.txt) and private key of forge
             
             await nft_minter.check_connection()
             latest_block = nft_minter.w3.eth.get_block('latest')
