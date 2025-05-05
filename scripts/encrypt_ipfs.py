@@ -246,7 +246,7 @@ async def main():
         
             nft_minter.print_abi()
         
-            cid = await upload_to_ipfs(storage_payload)#cid 储存在链上
+            cid = await upload_to_ipfs(storage_payload)#store cid on-chain
             print("\n Successfully uploaded data，IPFS CID:", cid)
             
             tx_hash = await nft_minter.mint_nft(cid, latest_block.timestamp)
